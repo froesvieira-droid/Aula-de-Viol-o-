@@ -8,19 +8,25 @@ const scales = [
     name: 'Maior', 
     notes: ['C', 'D', 'E', 'F', 'G', 'A', 'B'],
     phrasingTips: 'Use slides e hammer-ons para conectar as notas de forma suave, característica do sertanejo romântico.',
-    licks: ['C-D-E-G', 'E-F-G-A-G-E']
+    licks: ['C-D-E-G', 'E-F-G-A-G-E'],
+    improvisationTips: 'Explore a nota de repouso (tônica) no final das frases para dar sensação de conclusão.',
+    improvisationLicks: ['G-E-D-C', 'A-G-E-C']
   },
   { 
     name: 'Menor', 
     notes: ['C', 'D', 'Eb', 'F', 'G', 'Ab', 'Bb'],
     phrasingTips: 'Foque em bends curtos e vibratos expressivos para dar um tom mais melancólico e dramático.',
-    licks: ['C-Eb-F-G', 'G-Ab-Bb-C']
+    licks: ['C-Eb-F-G', 'G-Ab-Bb-C'],
+    improvisationTips: 'Use a nota sensível (sétima menor) para criar tensão antes de resolver na tônica.',
+    improvisationLicks: ['Bb-Ab-G-F', 'Eb-F-G-Bb']
   },
   { 
     name: 'Pentatônica', 
     notes: ['C', 'D', 'E', 'G', 'A'],
     phrasingTips: 'Ideal para solos rápidos e improvisações. Use double-stops para um som mais encorpado.',
-    licks: ['C-D-E-G-A', 'A-G-E-D-C']
+    licks: ['C-D-E-G-A', 'A-G-E-D-C'],
+    improvisationTips: 'Alterne entre notas da escala e notas de passagem cromáticas para um som mais moderno.',
+    improvisationLicks: ['E-G-A-C-D', 'D-C-A-G-E']
   },
 ];
 
@@ -60,6 +66,18 @@ export default function ScaleTrainer() {
           <div className="flex gap-2">
             {selectedScale.licks.map((lick, index) => (
               <span key={index} className="bg-gray-100 px-3 py-1 rounded-md text-sm font-mono text-gray-700">{lick}</span>
+            ))}
+          </div>
+        </div>
+        <div>
+          <h4 className="font-semibold text-amber-950">Dicas de Improviso</h4>
+          <p className="text-sm text-gray-600">{selectedScale.improvisationTips}</p>
+        </div>
+        <div>
+          <h4 className="font-semibold text-amber-950">Licks de Improviso</h4>
+          <div className="flex gap-2">
+            {selectedScale.improvisationLicks.map((lick, index) => (
+              <span key={index} className="bg-amber-100 px-3 py-1 rounded-md text-sm font-mono text-amber-800">{lick}</span>
             ))}
           </div>
         </div>
