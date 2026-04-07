@@ -4,18 +4,33 @@ import { useState } from 'react';
 import { motion } from 'motion/react';
 
 const scales = [
-  { name: 'Maior', notes: ['C', 'D', 'E', 'F', 'G', 'A', 'B'] },
-  { name: 'Menor', notes: ['C', 'D', 'Eb', 'F', 'G', 'Ab', 'Bb'] },
-  { name: 'Pentatônica', notes: ['C', 'D', 'E', 'G', 'A'] },
+  { 
+    name: 'Maior', 
+    notes: ['C', 'D', 'E', 'F', 'G', 'A', 'B'],
+    phrasingTips: 'Use slides e hammer-ons para conectar as notas de forma suave, característica do sertanejo romântico.',
+    licks: ['C-D-E-G', 'E-F-G-A-G-E']
+  },
+  { 
+    name: 'Menor', 
+    notes: ['C', 'D', 'Eb', 'F', 'G', 'Ab', 'Bb'],
+    phrasingTips: 'Foque em bends curtos e vibratos expressivos para dar um tom mais melancólico e dramático.',
+    licks: ['C-Eb-F-G', 'G-Ab-Bb-C']
+  },
+  { 
+    name: 'Pentatônica', 
+    notes: ['C', 'D', 'E', 'G', 'A'],
+    phrasingTips: 'Ideal para solos rápidos e improvisações. Use double-stops para um som mais encorpado.',
+    licks: ['C-D-E-G-A', 'A-G-E-D-C']
+  },
 ];
 
 export default function ScaleTrainer() {
   const [selectedScale, setSelectedScale] = useState(scales[0]);
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-      <h3 className="text-xl font-bold mb-4 text-amber-900">Treinador de Escalas</h3>
-      <div className="flex gap-2 mb-6">
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm space-y-6">
+      <h3 className="text-xl font-bold text-amber-900">Treinador de Escalas</h3>
+      <div className="flex gap-2">
         {scales.map((scale) => (
           <button 
             key={scale.name} 
@@ -26,12 +41,28 @@ export default function ScaleTrainer() {
           </button>
         ))}
       </div>
+      
       <div className="flex gap-2">
         {selectedScale.notes.map((note, index) => (
           <div key={index} className="w-12 h-12 flex items-center justify-center bg-amber-50 border border-amber-200 rounded-lg font-mono font-bold text-amber-900">
             {note}
           </div>
         ))}
+      </div>
+
+      <div className="space-y-4">
+        <div>
+          <h4 className="font-semibold text-amber-950">Dicas de Fraseado</h4>
+          <p className="text-sm text-gray-600">{selectedScale.phrasingTips}</p>
+        </div>
+        <div>
+          <h4 className="font-semibold text-amber-950">Exemplos de Licks</h4>
+          <div className="flex gap-2">
+            {selectedScale.licks.map((lick, index) => (
+              <span key={index} className="bg-gray-100 px-3 py-1 rounded-md text-sm font-mono text-gray-700">{lick}</span>
+            ))}
+          </div>
+        </div>
       </div>
     </motion.div>
   );

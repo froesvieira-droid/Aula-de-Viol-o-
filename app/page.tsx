@@ -1,10 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { Play, BookOpen, Music, ChevronRight } from 'lucide-react';
+import { Play, BookOpen, Music, ChevronRight, Book } from 'lucide-react';
 import { motion } from 'motion/react';
 import ScaleTrainer from '@/components/ScaleTrainer';
 import PracticeModule from '@/components/PracticeModule';
+import ChordDictionary from '@/components/ChordDictionary';
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -18,6 +19,7 @@ export default function HomePage() {
             <button onClick={() => setActiveTab('dashboard')} className={`px-3 py-2 rounded-md ${activeTab === 'dashboard' ? 'bg-amber-100 text-amber-900' : 'text-gray-600 hover:text-amber-800'}`}>Dashboard</button>
             <button onClick={() => setActiveTab('pratica')} className={`px-3 py-2 rounded-md ${activeTab === 'pratica' ? 'bg-amber-100 text-amber-900' : 'text-gray-600 hover:text-amber-800'}`}>Prática</button>
             <button onClick={() => setActiveTab('escalas')} className={`px-3 py-2 rounded-md ${activeTab === 'escalas' ? 'bg-amber-100 text-amber-900' : 'text-gray-600 hover:text-amber-800'}`}>Escalas</button>
+            <button onClick={() => setActiveTab('dicionario')} className={`px-3 py-2 rounded-md ${activeTab === 'dicionario' ? 'bg-amber-100 text-amber-900' : 'text-gray-600 hover:text-amber-800'}`}>Dicionário</button>
           </nav>
         </div>
       </header>
@@ -34,7 +36,7 @@ export default function HomePage() {
               </button>
             </section>
             
-            <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <BookOpen className="text-amber-700 mb-4" size={32} />
                 <h3 className="text-lg font-semibold mb-2">Teoria Sertaneja</h3>
@@ -47,11 +49,18 @@ export default function HomePage() {
                 <p className="text-gray-600 text-sm mb-4">Pratique escalas em todos os tons.</p>
                 <button onClick={() => setActiveTab('escalas')} className="text-amber-800 font-medium flex items-center gap-1">Começar <ChevronRight size={16} /></button>
               </div>
+              <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                <Book className="text-amber-700 mb-4" size={32} />
+                <h3 className="text-lg font-semibold mb-2">Dicionário de Acordes</h3>
+                <p className="text-gray-600 text-sm mb-4">Consulte os acordes mais usados.</p>
+                <button onClick={() => setActiveTab('dicionario')} className="text-amber-800 font-medium flex items-center gap-1">Consultar <ChevronRight size={16} /></button>
+              </div>
             </section>
           </motion.div>
         )}
         {activeTab === 'pratica' && <PracticeModule />}
         {activeTab === 'escalas' && <ScaleTrainer />}
+        {activeTab === 'dicionario' && <ChordDictionary />}
       </main>
     </div>
   );
