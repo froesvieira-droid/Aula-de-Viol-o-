@@ -38,7 +38,8 @@ export default function PracticeModule() {
     } else {
       if (audioRef.current) {
         audioRef.current.src = url;
-        audioRef.current.play();
+        audioRef.current.load();
+        audioRef.current.play().catch(e => console.error("Error playing audio:", e));
       }
       setPlayingIndex(index);
     }
