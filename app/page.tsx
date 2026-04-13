@@ -6,6 +6,7 @@ import { motion } from 'motion/react';
 import ScaleTrainer from '@/components/ScaleTrainer';
 import PracticeModule from '@/components/PracticeModule';
 import ChordDictionary from '@/components/ChordDictionary';
+import TheoryModule from '@/components/TheoryModule';
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -20,6 +21,7 @@ export default function HomePage() {
             <button onClick={() => setActiveTab('pratica')} className={`px-3 py-2 rounded-md ${activeTab === 'pratica' ? 'bg-amber-100 text-amber-900' : 'text-gray-600 hover:text-amber-800'}`}>Prática</button>
             <button onClick={() => setActiveTab('escalas')} className={`px-3 py-2 rounded-md ${activeTab === 'escalas' ? 'bg-amber-100 text-amber-900' : 'text-gray-600 hover:text-amber-800'}`}>Escalas</button>
             <button onClick={() => setActiveTab('dicionario')} className={`px-3 py-2 rounded-md ${activeTab === 'dicionario' ? 'bg-amber-100 text-amber-900' : 'text-gray-600 hover:text-amber-800'}`}>Dicionário</button>
+            <button onClick={() => setActiveTab('teoria')} className={`px-3 py-2 rounded-md ${activeTab === 'teoria' ? 'bg-amber-100 text-amber-900' : 'text-gray-600 hover:text-amber-800'}`}>Teoria</button>
           </nav>
         </div>
       </header>
@@ -36,12 +38,12 @@ export default function HomePage() {
               </button>
             </section>
             
-            <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <section className="grid grid-cols-1 md:grid-cols-4 gap-6">
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <BookOpen className="text-amber-700 mb-4" size={32} />
                 <h3 className="text-lg font-semibold mb-2">Teoria Sertaneja</h3>
                 <p className="text-gray-600 text-sm mb-4">Entenda os acordes e ritmos essenciais.</p>
-                <a href="#" className="text-amber-800 font-medium flex items-center gap-1">Ver aulas <ChevronRight size={16} /></a>
+                <button onClick={() => setActiveTab('teoria')} className="text-amber-800 font-medium flex items-center gap-1">Ver aulas <ChevronRight size={16} /></button>
               </div>
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <Music className="text-amber-700 mb-4" size={32} />
@@ -61,6 +63,7 @@ export default function HomePage() {
         {activeTab === 'pratica' && <PracticeModule />}
         {activeTab === 'escalas' && <ScaleTrainer />}
         {activeTab === 'dicionario' && <ChordDictionary />}
+        {activeTab === 'teoria' && <TheoryModule />}
       </main>
     </div>
   );
